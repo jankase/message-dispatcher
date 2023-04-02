@@ -27,7 +27,11 @@ public final class JSONDecodableDispatcher: DecodableDispatcher, DecodableDispat
             case .handled(let message, let handler):
                 return .handled(message: message, by: handler)
             case let .handlerNotFound(message, errors):
-                notFoundResult = (message: message, errors: errors)
+                if notFoundResult != nil {
+                    notFoundResult?.errors.append(contentsOf: errors)
+                } else {
+                    notFoundResult = (message: message, errors: errors)
+                }
             default:
                 continue
             }
