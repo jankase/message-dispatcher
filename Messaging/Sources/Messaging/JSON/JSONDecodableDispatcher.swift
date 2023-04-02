@@ -32,7 +32,7 @@ public final class JSONDecodableDispatcher: DecodableDispatcher, DecodableDispat
                 } else {
                     notFoundResult = (message: message, errors: errors)
                 }
-            default:
+            case .messageNotSupported:
                 continue
             }
         }
